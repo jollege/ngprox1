@@ -1,0 +1,9 @@
+server {
+  
+  listen 80;
+
+  location / {
+    proxy_pass "http://game2048:8080";
+  }
+
+}
