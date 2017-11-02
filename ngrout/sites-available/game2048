@@ -1,0 +1,70 @@
+# Default server configuration
+#
+server {
+  listen 80;
+  # listen 80 default_server;
+  # listen [::]:80 default_server;
+
+  root /usr/share/nginx/game2048;
+
+  # Add index.php to the list if you are using PHP
+  # index index.php index.html index.htm index.nginx-debian.html;
+  index index.html index.htm index.nginx-debian.html;
+
+  server_name game2048 www.game2048;
+  # server_name 178.62.248.240;
+  # server_name _;
+
+  location / {
+    # First attempt to serve request as file, then
+    # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ =404;
+    # wordpress permalink:
+    #           try_files $uri $uri/ /index.php?$args;
+  }
+
+  # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+  #
+  #location ~ \.php$ {
+  # include snippets/fastcgi-php.conf;
+  #
+  # # With php7.0-cgi alone:
+  # fastcgi_pass 127.0.0.1:9000;
+  # # With php7.0-fpm:
+  # fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+  #}
+  #     location ~ \.php$ {
+  #         include snippets/fastcgi-php.conf;
+  #         fastcgi_pass unix:/run/php/php7.0-fpm.sock;
+  #     }
+
+  # deny access to .htaccess files, if Apache's document root
+  # concurs with nginx's one
+  #
+  #location ~ /\.ht {
+  # deny all;
+  #}
+        location ~ /\.ht {
+            deny all;
+        }
+}
+
+
+# Virtual Host configuration for example.com
+#
+# You can move that to a different file under sites-available/ and symlink that
+# to sites-enabled/ to enable it.
+#
+#server {
+# listen 80;
+# listen [::]:80;
+#
+# server_name example.com;
+#
+# root /var/www/example.com;
+# index index.html;
+#
+# location / {
+#   try_files $uri $uri/ =404;
+# }
+#}
