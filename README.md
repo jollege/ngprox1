@@ -23,7 +23,8 @@ host: "localhost"
 
 # Nginx config
 The nginx image `ellvtr/ngrout` is based on the official `nginx` image
-and built from the Dockerfile in `./ngrout/Dockerfile`.
+and built from the Dockerfile in `./ngrout/Dockerfile` - 
+using `./ngrout/build.sh` for quick image build.
 
 It currently uses the config in `./ngrout/config/nginx.conf`
 and `sites-available/app1` which has the following server
