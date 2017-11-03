@@ -6,8 +6,8 @@ server {
     proxy_pass "http://game2048:8080";
   }
 
-  location /tw {
-    proxy_pass "http://tw:80";
+  location /game {
+    proxy_pass "http://game:9999";
   }
 
 }

@@ -1,1 +1,1 @@
-docker build -t ngrout_img .
+docker build -t ellvtr/ngrout .

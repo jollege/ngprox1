@@ -1,2 +1,1 @@
- docker exec -ti ngrout bash
- 
+docker exec -ti ngrout bash

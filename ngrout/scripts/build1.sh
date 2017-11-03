@@ -4,7 +4,7 @@ hostname -i
 echo "mkdir /etc/nginx/sites-enabled"
 mkdir /etc/nginx/sites-enabled
 
-echo "Game 2048" > /usr/share/nginx/game2048/index.html
+# echo "Game 2048" > /usr/share/nginx/game2048/index.html
 # echo "cat /usr/share/nginx/game2048/index.html"
 # cat /usr/share/nginx/game2048/index.html
 
