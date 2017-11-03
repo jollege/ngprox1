@@ -1,45 +1,47 @@
-# Docker nginx proxy
+# Docker nginx reverse proxy
 
 To start all relevant containers:
 ```bash
 ./run.sh
 ```
 
-The nginx is set up to proxy port 8080 on this path:
-http://localhost/
+The nginx is set up to reverse proxy to game2048:8080 on this header:
+http://game2048/
 
-And to serve port 9999 on this path:
-http://localhost/game
+And to reverse proxy to game:8080 on this header:
+http://game/
 
-The first one works, but the second gives a "502 Bad Gateway"
-in the browser and within the nginx docker it gives
-this error:
-```
-[error] 7#7: *6 connect() failed (111: Connection refused) 
-while connecting to upstream, client: 172.17.0.1, server: , 
-request: "GET /game HTTP/1.1", upstream: "http://172.17.0.4:9999/game", 
-host: "localhost"
-````
+I resolved previous errors described in this readme file:
+`./README.old01.md`
 
 # Nginx config
 The nginx image `ellvtr/ngrout` is based on the official `nginx` image
 and built from the Dockerfile in `./ngrout/Dockerfile` - 
 using `./ngrout/build.sh` for quick image build.
 
-It currently uses the config in `./ngrout/config/nginx.conf`
-and `sites-available/app1` which has the following server
+It currently use the config in `./ngrout/config/nginx.conf`
+and `sites-available/app2` which has the following server
 block:
 ```
 server {
   
   listen 80;
+  server_name game2048;
 
   location / {
     proxy_pass "http://game2048:8080";
   }
 
-  location /game {
-    proxy_pass "http://game:9999";
+}
+
+server {
+  
+  listen 80;
+  server_name game;
+
+  location / {
+    # Remember to refer to docker port, not host port:
+    proxy_pass "http://game:8080";
   }
 
 }

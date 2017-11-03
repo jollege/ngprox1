@@ -8,7 +8,8 @@ mkdir /etc/nginx/sites-enabled
 # echo "cat /usr/share/nginx/game2048/index.html"
 # cat /usr/share/nginx/game2048/index.html
 
-ln -s /etc/nginx/sites-available/app1 /etc/nginx/sites-enabled/app1
+ln -s /etc/nginx/sites-available/app2 /etc/nginx/sites-enabled/app2
+# ln -s /etc/nginx/sites-available/app1 /etc/nginx/sites-enabled/app1
 # ln -s /etc/nginx/sites-available/game2048 /etc/nginx/sites-enabled/game2048
 
 echo "ls /etc/nginx/sites-available"

@@ -1,0 +1,23 @@
+server {
+  
+  listen 80;
+  server_name game2048;
+
+  location / {
+    # Remember to refer to docker port, not host port:
+    proxy_pass "http://game2048:8080";
+  }
+
+}
+
+server {
+  
+  listen 80;
+  server_name game;
+
+  location / {
+    # Remember to refer to docker port, not host port:
+    proxy_pass "http://game:8080";
+  }
+
+}
