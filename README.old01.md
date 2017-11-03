@@ -14,12 +14,15 @@ http://localhost/game
 The first one works, but the second gives a "502 Bad Gateway"
 in the browser and within the nginx docker it gives
 this error:
-```
+```bash
 [error] 7#7: *6 connect() failed (111: Connection refused) 
 while connecting to upstream, client: 172.17.0.1, server: , 
 request: "GET /game HTTP/1.1", upstream: "http://172.17.0.4:9999/game", 
 host: "localhost"
 ````
+
+Problem described in this issue:
+https://stackoverflow.com/questions/47091356/docker-nginx-reverse-proxy-gives-502-bad-gateway/
 
 # Nginx config
 The nginx image `ellvtr/ngrout` is based on the official `nginx` image
@@ -29,7 +32,7 @@ using `./ngrout/build.sh` for quick image build.
 It currently uses the config in `./ngrout/config/nginx.conf`
 and `sites-available/app1` which has the following server
 block:
-```
+```bash
 server {
   
   listen 80;
