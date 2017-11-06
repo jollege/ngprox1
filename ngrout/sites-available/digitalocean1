@@ -1,0 +1,12 @@
+server {
+  
+  listen 80;
+  server_name kuv01.awesomemap.tools;
+
+  location / {
+    # Remember to refer to docker port, not host port:
+    # (except when referring to a global DNS as here)
+    proxy_pass "http://kuv01.awesomemap.tools:5001";
+  }
+
+}
