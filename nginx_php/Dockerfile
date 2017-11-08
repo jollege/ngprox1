@@ -1,30 +1,35 @@
 FROM ubuntu
 # FROM nginx
 
-# Get docker argument and set env-var to be used later in build1.sh:
-# ARG host
-# ENV HOST=$host
-# RUN echo $HOST
-
 WORKDIR /usr/src
 
 RUN apt-get update
-# php7.0 php7.0-fpm php7.0-mysql
-RUN apt-get install nginx php7.0 php7.0-fpm php7.0-mysql -y
+
+# RUN apt-get install ufw -y
+# RUN ufw status
+# RUN ufw activate
+# RUN ufw allow 'Nginx HTTP'
+
+RUN apt-get install nano -y
+RUN apt-get install nginx -y
+RUN apt-get install php php-fpm -y
+
 RUN php -v
 RUN ls /etc/nginx/
 RUN ls /var/www/html
 
-# COPY ./nginx/nginx.conf /etc/nginx/nginx.conf
+COPY php.ini /etc/php/7.0/fpm/php.ini
+RUN cat /etc/php/7.0/fpm/php.ini | grep "cgi.fix_pathinfo"
+RUN sleep 5
+RUN service php7.0-fpm start && echo "yo!"
 
-# COPY ./static /usr/share/nginx/html
-# RUN mkdir /usr/share/nginx/other_site
+COPY default.nginx /etc/nginx/sites-available/default
+RUN nginx -t
+RUN service nginx restart
 
-# COPY ./nginx/sites-available /etc/nginx/sites-available
+COPY info.php /var/www/html/info.php
 
-# Copy and run the script that sets active configuration:
-# COPY ./scripts .
-# RUN ls -lAh
-# RUN sh build1.sh
+COPY services.sh ./
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ./services.sh
+# CMD ["nginx", "-g", "daemon off;"]
