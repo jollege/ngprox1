@@ -17,4 +17,4 @@ COPY ./sites-available /etc/nginx/sites-available
 # Copy and run the script that sets active configuration:
 COPY ./scripts .
 # RUN ls -lAh
-RUN sh build1.sh
+RUN sh build1.sh $host

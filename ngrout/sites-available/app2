@@ -21,3 +21,15 @@ server {
   }
 
 }
+
+server {
+  
+  listen 80;
+  server_name awe1;
+
+  location / {
+    # Remember to refer to docker port, not host port:
+    proxy_pass "http://awe1:80";
+  }
+
+}
